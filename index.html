@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CardWise AI — Smarter Credit Card Rewards & Optimization</title>
+  <meta name="description" content="Personalized credit card rewards optimization for Indian consumers. Know which card to use before you pay for maximum cashback, reward points, and lounge benefits.">
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231A382B'/><path d='M8 12h16M8 18h10' stroke='%23A3E635' stroke-width='2.5' stroke-linecap='round'/></svg>">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       1. NAVIGATION
+       =================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <!-- Left: Logo & Wordmark -->
+      <a href="/" class="brand-logo" aria-label="CardWise AI Homepage">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+            <line x1="2" y1="10" x2="22" y2="10"></line>
+            <line x1="6" y1="15" x2="10" y2="15"></line>
+          </svg>
+        </div>
+        <span class="brand-text">CardWise <span class="brand-ai-badge">AI</span></span>
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#circle">Circle</a>
+        <a href="#faqs">FAQs</a>
+      </nav>
+
+      <!-- Right: Action CTAs -->
+      <div class="nav-actions" id="main-nav-actions">
+        <div id="nav-unauth-actions" style="display:flex; align-items:center; gap:8px;">
+          <button type="button" class="sign-in-btn" data-route="login" aria-label="Sign in to CardWise">
+            Sign in
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" data-route="signup" aria-label="Get started with CardWise">
+            Get started
+          </button>
+        </div>
+        <div id="nav-auth-actions" style="display:none; align-items:center; gap:8px;">
+          <button type="button" class="nav-profile-pill" data-route="app" title="Open AI Agent Console">
+            <span class="user-avatar-mini user-initial-display">U</span>
+            <div style="text-align:left; line-height:1.2; margin-right:4px;">
+              <div class="user-name-display" style="font-size:0.8125rem; font-weight:700; color:var(--color-charcoal); white-space:nowrap;">User</div>
+              <div class="user-email-display" style="font-size:0.6875rem; color:var(--color-charcoal-muted); white-space:nowrap;">user@cardwise.in</div>
+            </div>
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" data-route="app">
+            AI Console
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-signout" title="Sign out / Switch account">
+            Sign out
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Hamburger Button -->
+      <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle mobile navigation menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobile-drawer" role="region" aria-label="Mobile Navigation">
+      <ul class="mobile-drawer-links">
+        <li><a href="#how-it-works" class="mobile-drawer-link">How it works</a></li>
+        <li><a href="#features" class="mobile-drawer-link">Features</a></li>
+        <li><a href="#circle" class="mobile-drawer-link">Circle</a></li>
+        <li><a href="#faqs" class="mobile-drawer-link">FAQs</a></li>
+      </ul>
+      <div class="mobile-drawer-actions">
+        <div id="mobile-unauth-actions" style="display:flex; flex-direction:column; gap:8px; width:100%;">
+          <button type="button" class="btn btn-primary" data-route="signup" style="width: 100%;">
+            Get started
+          </button>
+          <button type="button" class="btn btn-secondary" data-route="login" style="width: 100%;">
+            Sign in
+          </button>
+        </div>
+        <div id="mobile-auth-actions" style="display:none; flex-direction:column; gap:10px; width:100%;">
+          <div style="padding:10px 14px; background:var(--color-surface-1); border-radius:var(--radius-md); display:flex; align-items:center; gap:10px;">
+            <span class="user-avatar-mini user-initial-display">U</span>
+            <div>
+              <div class="user-name-display" style="font-size:0.875rem; font-weight:700;">User</div>
+              <div class="user-email-display" style="font-size:0.75rem; color:var(--color-charcoal-muted);">user@cardwise.in</div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" data-route="app" style="width: 100%;">
+            Open AI Console
+          </button>
+          <button type="button" class="btn btn-secondary" id="mobile-signout-btn" style="width: 100%;">
+            Sign out / Switch
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================
+         2. HERO SECTION
+         =================================================================== -->
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <!-- Left Column: Copy & Actions -->
+        <div class="hero-content">
+          <div class="eyebrow-badge">
+            <span class="eyebrow-dot"></span>
+            SMARTER CREDIT CARD REWARDS
+          </div>
+          
+          <h1 id="hero-title" class="display-lg hero-headline">
+            Know which card to use. Before you pay.
+          </h1>
+          
+          <p class="body-lg hero-supporting">
+            Find better cashback, make the most of your card benefits and discover smarter ways to pay—all tailored to the cards you own.
+          </p>
+          
+          <div class="hero-cta-group">
+            <button type="button" class="btn btn-primary" data-route="signup" id="hero-primary-cta">
+              Get started
+            </button>
+            <button type="button" class="btn btn-secondary" data-route="login" id="hero-secondary-cta">
+              Sign in
+            </button>
+          </div>
+
+          <div class="hero-micro-copy">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Your cards. Your spending. Your best available rewards.</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Lightweight Product Preview -->
+        <div class="hero-preview" aria-label="Interactive CardWise Demonstration">
+          <div class="preview-window">
+            <div class="preview-header">
+              <span class="preview-pill-status">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                Active Portfolio (3 Cards)
+              </span>
+              <span class="preview-pill-demo">Demo Data</span>
+            </div>
+
+            <div class="preview-body">
+              <!-- Question Interface -->
+              <div class="sample-input-box">
+                <div class="sample-input-row">
+                  <svg class="sample-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input 
+                    type="text" 
+                    id="hero-sample-query" 
+                    class="sample-query-text" 
+                    value="Which of my cards gives me the best rewards on Amazon?" 
+                    aria-label="Sample purchase question"
+                  />
+                  <button type="button" class="sample-mic-btn" aria-label="Voice input preview" title="Voice search enabled">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                      <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Interactive Preset Chips -->
+              <div class="query-presets-label">Try interactive spending scenarios:</div>
+              <div class="query-presets" role="tablist" aria-label="Scenario presets">
+                <button type="button" class="preset-chip active" data-preset="amazon" role="tab" aria-selected="true">
+                  Amazon ₹25k
+                </button>
+                <button type="button" class="preset-chip" data-preset="makemytrip" role="tab" aria-selected="false">
+                  MakeMyTrip ₹14k
+                </button>
+                <button type="button" class="preset-chip" data-preset="swiggy" role="tab" aria-selected="false">
+                  Swiggy ₹1.8k
+                </button>
+              </div>
+
+              <!-- Ranked Cards List -->
+              <div class="comparison-list" id="comparison-results-list" aria-live="polite">
+                <!-- Dynamically rendered via app.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         3. PRODUCT PREVIEW / VALUE PROPOSITION
+         =================================================================== -->
+    <section class="section-padding" id="value-prop" aria-labelledby="value-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="value-heading" class="headline-lg">More than choosing a credit card.</h2>
+          <p class="body-lg">The right payment option depends on more than the advertised reward rate.</p>
+        </div>
+
+        <div class="value-grid">
+          <!-- Card A -->
+          <div class="value-card">
+            <div class="value-icon-box" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <h3 class="headline-sm">Personalized recommendations</h3>
+            <p class="body-md">
+              Compare the cards you own against your purchase and current eligible benefits.
+            </p>
+          </div>
+
+          <!-- Card B -->
+          <div class="value-card">
+            <div class="value-icon-box" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+              </svg>
+            </div>
+            <h3 class="headline-sm">Rewards beyond the obvious</h3>
+            <p class="body-md">
+              Explore supported shopping vouchers, reward portals and merchant offers when their terms allow.
+            </p>
+          </div>
+
+          <!-- Card C -->
+          <div class="value-card">
+            <div class="value-icon-box" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+            </div>
+            <h3 class="headline-sm">Benefits that matter</h3>
+            <p class="body-md">
+              Understand milestone progress, redemption conditions and lounge-access requirements.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         4. HOW IT WORKS
+         =================================================================== -->
+    <section class="section-padding how-section" id="how-it-works" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="how-heading" class="headline-lg">Three steps to a smarter payment.</h2>
+          <p class="body-lg">A simple workflow designed around the way you already shop.</p>
+        </div>
+
+        <div class="steps-grid">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-number" aria-label="Step 1">01</div>
+            <h3 class="headline-sm">Add your cards</h3>
+            <p class="body-md">Select your credit cards so CardWise can tailor its recommendations.</p>
+            <div class="step-sub-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>No card numbers or CVVs required</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-number" aria-label="Step 2">02</div>
+            <h3 class="headline-sm">Ask a question</h3>
+            <p class="body-md">Type or speak your purchase, cashback or card-benefit question.</p>
+            <div class="step-sub-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Natural language in Indian rupees (INR)</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-number" aria-label="Step 3">03</div>
+            <h3 class="headline-sm">Compare your options</h3>
+            <p class="body-md">Review ranked recommendations, estimated rewards and relevant eligibility conditions.</p>
+            <div class="step-sub-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+              <span>Instant net yield and redemption pathway</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         5. KEY FEATURES
+         =================================================================== -->
+    <section class="section-padding" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="features-heading" class="headline-lg">Make more of the cards you already have.</h2>
+          <p class="body-lg">Straightforward intelligence without the guesswork of complicated credit card terms.</p>
+        </div>
+
+        <div class="features-container">
+          <!-- Feature 1: AI reward assistant -->
+          <div class="feature-block">
+            <div class="feature-text">
+              <span class="feature-badge">Feature 01</span>
+              <h3 class="headline-md">AI reward assistant</h3>
+              <p class="body-lg">
+                Ask about cashback, purchase decisions, minimum spending requirements, milestones and card benefits in natural language.
+              </p>
+              <ul class="feature-bullet-list">
+                <li class="feature-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Evaluates merchant MCC codes, exclusions, and monthly cashback caps.</span>
+                </li>
+                <li class="feature-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Supports voice and text inputs for on-the-go checkout advice.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="feature-mock-ui">
+                <div style="background-color: #FFFFFF; border: 1px solid var(--color-hairline); border-radius: var(--radius-md); padding: 14px; margin-bottom: 12px;">
+                  <div style="font-size: 0.75rem; color: var(--color-charcoal-light); margin-bottom: 4px;">User prompt:</div>
+                  <div style="font-size: 0.875rem; font-weight: 500; color: var(--color-charcoal);">"I have ₹45,000 rent payment. Does SBI Cashback give 5%?"</div>
+                </div>
+                <div style="background-color: #FFFFFF; border-left: 3px solid var(--color-status-amber); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 14px; border: 1px solid var(--color-hairline); border-left-width: 3px;">
+                  <div style="display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; color: var(--color-status-amber); margin-bottom: 4px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    Exclusion Alert Detected
+                  </div>
+                  <div style="font-size: 0.8125rem; color: var(--color-charcoal-muted); line-height: 1.5;">
+                    Rent payments (MCC 6513) are excluded from cashback on SBI Cashback and incur a 1% fee. Use a card with fee-free milestone qualification instead.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 2: Clear reward comparisons -->
+          <div class="feature-block reversed">
+            <div class="feature-text">
+              <span class="feature-badge">Feature 02</span>
+              <h3 class="headline-md">Clear reward comparisons</h3>
+              <p class="body-lg">
+                Understand the difference between immediate cashback, reward-point value and eligible milestone benefits.
+              </p>
+              <ul class="feature-bullet-list">
+                <li class="feature-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Transparent redemption valuation: statement credit vs airline miles vs gift vouchers.</span>
+                </li>
+                <li class="feature-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Milestone tracker calculates distance to annual fee waivers and voucher thresholds.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="feature-mock-ui">
+                <div class="mock-stat-row">
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">Instant Cashback</div>
+                    <div class="mock-stat-val tabular-nums">₹1,250</div>
+                    <div style="font-size: 0.6875rem; color: var(--color-charcoal-light);">Direct ledger credit</div>
+                  </div>
+                  <div class="mock-stat-card">
+                    <div class="mock-stat-label">Points Valuation</div>
+                    <div class="mock-stat-val tabular-nums">₹2,331</div>
+                    <div style="font-size: 0.6875rem; color: var(--color-charcoal-light);">Flight partner 1:1</div>
+                  </div>
+                </div>
+                <div class="mock-milestone-bar">
+                  <div style="display:flex; justify-content:space-between; font-size: 0.75rem; font-weight:600; color: var(--color-charcoal);">
+                    <span>Amex ₹1.9L Milestone</span>
+                    <span class="tabular-nums">₹1,45,000 / ₹1,90,000</span>
+                  </div>
+                  <div class="milestone-progress-track">
+                    <div class="milestone-progress-fill" style="width: 76%;"></div>
+                  </div>
+                  <div style="font-size: 0.6875rem; color: var(--color-charcoal-light);">₹45,000 left to unlock ₹7,500 Taj voucher</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 3: CardWise Circle -->
+          <div class="feature-block">
+            <div class="feature-text">
+              <span class="feature-badge">Feature 03</span>
+              <h3 class="headline-md">CardWise Circle</h3>
+              <p class="body-lg">
+                Discover offers your friends voluntarily share for shopping, movie tickets, dining and travel.
+              </p>
+              <ul class="feature-bullet-list">
+                <li class="feature-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Never let 1+1 movie benefits or unused dining discounts go to waste.</span>
+                </li>
+                <li class="feature-bullet">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Strict zero-knowledge privacy: only offer details are shared, never numbers or credentials.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="feature-visual">
+              <div class="feature-mock-ui">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <div class="circle-offer-item" style="box-shadow: none;">
+                    <div class="circle-offer-meta">
+                      <span class="circle-friend-name">Rohit Sharma</span>
+                      <span>2 hrs ago</span>
+                    </div>
+                    <div class="circle-offer-title">BookMyShow Buy 1 Get 1 Free (ICICI Sapphiro)</div>
+                    <span class="circle-offer-tag">2 tickets remaining this month</span>
+                  </div>
+                  <div class="circle-offer-item" style="box-shadow: none;">
+                    <div class="circle-offer-meta">
+                      <span class="circle-friend-name">Neha Kapoor</span>
+                      <span>Today</span>
+                    </div>
+                    <div class="circle-offer-title">Taj Epicure 25% Dining Discount (Amex)</div>
+                    <span class="circle-offer-tag">Valid in Bangalore / Mumbai</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         6. CARDWISE CIRCLE SECTION
+         =================================================================== -->
+    <section class="section-padding circle-section" id="circle" aria-labelledby="circle-heading">
+      <div class="container">
+        <div class="circle-card-container">
+          <div class="circle-grid">
+            <!-- Left Info -->
+            <div>
+              <div class="eyebrow-badge">
+                <span class="eyebrow-dot"></span>
+                COMMUNITY FINANCIAL INTELLIGENCE
+              </div>
+              <h2 id="circle-heading" class="headline-lg" style="margin-bottom: 14px;">
+                Good offers are better shared.
+              </h2>
+              <p class="body-lg">
+                Create a private Circle with friends and discover relevant card offers they choose to share.
+              </p>
+
+              <ul class="circle-capabilities-list">
+                <li class="circle-capability-item">
+                  <div class="circle-cap-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong style="color: var(--color-charcoal); font-size: 0.9375rem; display: block;">Invite friends to a Circle</strong>
+                    <span class="body-md">Create closed, trusted groups with roommates, family or colleagues.</span>
+                  </div>
+                </li>
+
+                <li class="circle-capability-item">
+                  <div class="circle-cap-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong style="color: var(--color-charcoal); font-size: 0.9375rem; display: block;">Discover eligible shopping and entertainment offers</strong>
+                    <span class="body-md">See active vouchers, discounts and perks your circle has available.</span>
+                  </div>
+                </li>
+
+                <li class="circle-capability-item">
+                  <div class="circle-cap-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <strong style="color: var(--color-charcoal); font-size: 0.9375rem; display: block;">Coordinate with the cardholder</strong>
+                    <span class="body-md">Easily reach out when an offer requires the cardholder to complete the purchase.</span>
+                  </div>
+                </li>
+              </ul>
+
+              <button type="button" class="btn btn-primary" data-route="circle" id="explore-circle-btn">
+                Explore CardWise Circle
+              </button>
+
+              <div class="circle-privacy-statement">
+                <strong>Privacy Statement:</strong> Members share offer information voluntarily, not card credentials. Any offer remains subject to issuer and merchant terms.
+              </div>
+            </div>
+
+            <!-- Right Visual Mockup -->
+            <div class="circle-mockup">
+              <div class="circle-mockup-header">
+                <div class="circle-group-title">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                  </svg>
+                  <span>Bangalore Techies Circle</span>
+                </div>
+                <div class="circle-members-avatars">
+                  <span class="circle-avatar">AK</span>
+                  <span class="circle-avatar" style="background-color: #244C3B;">PS</span>
+                  <span class="circle-avatar" style="background-color: #496F00;">RV</span>
+                  <span class="circle-avatar" style="background-color: #5E6961;">+4</span>
+                </div>
+              </div>
+
+              <div class="circle-feed">
+                <div class="circle-offer-item">
+                  <div class="circle-offer-meta">
+                    <span class="circle-friend-name">Arjun (Amex Plat Travel)</span>
+                    <span class="trust-badge">Voluntary</span>
+                  </div>
+                  <div class="circle-offer-title">Taj Epicure 25% Off Dining</div>
+                  <div style="font-size: 0.75rem; color: var(--color-charcoal-muted);">"Have unused dining discount for this weekend at Taj MG Road."</div>
+                  <span class="circle-offer-tag">Available for Circle</span>
+                </div>
+
+                <div class="circle-offer-item">
+                  <div class="circle-offer-meta">
+                    <span class="circle-friend-name">Pooja (HDFC Infinia)</span>
+                    <span class="trust-badge">Voluntary</span>
+                  </div>
+                  <div class="circle-offer-title">SmartBuy Apple Voucher (5x Points)</div>
+                  <div style="font-size: 0.75rem; color: var(--color-charcoal-muted);">"Buying a MacBook or iPad? Happy to help book via SmartBuy portal."</div>
+                  <span class="circle-offer-tag">16.65% Value Yield</span>
+                </div>
+
+                <div class="circle-offer-item">
+                  <div class="circle-offer-meta">
+                    <span class="circle-friend-name">Karan (ICICI Sapphiro)</span>
+                    <span class="trust-badge">Voluntary</span>
+                  </div>
+                  <div class="circle-offer-title">BookMyShow Buy 1 Get 1 Movie Ticket</div>
+                  <div style="font-size: 0.75rem; color: var(--color-charcoal-muted);">"2 tickets remaining for IMAX this month."</div>
+                  <span class="circle-offer-tag">₹500 Max Discount</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         7. FREQUENTLY ASKED QUESTIONS
+         =================================================================== -->
+    <section class="section-padding" id="faqs" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="faq-heading" class="headline-lg">Frequently asked questions.</h2>
+          <p class="body-lg">Clear answers to common questions about CardWise AI and security.</p>
+        </div>
+
+        <div class="faq-accordion" role="region" aria-label="FAQ Accordion">
+          <!-- Q1 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-1">
+              <span>What is CardWise AI?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-1">
+              <p>CardWise helps you compare eligible credit card rewards and benefits based on your own cards and the question you ask.</p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-2">
+              <span>How do I get started?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-2">
+              <p>Create an account, add your supported credit cards and ask a question about your next purchase or card benefits.</p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-3">
+              <span>Does CardWise need my full credit card number?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-3">
+              <p>No. The MVP uses card and bank names to configure your portfolio. Never submit your PIN, CVV, OTP or banking password.</p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-4">
+              <span>Are reward calculations guaranteed?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-4">
+              <p>No. Calculations depend on available card rules, merchant eligibility and current offers. Confirm important terms with the card issuer or merchant before making a purchase.</p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-5">
+              <span>Can I share offers with friends?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-5">
+              <p>Yes. CardWise Circle is designed for members to share offer information and coordinate where applicable. Each offer remains subject to its terms.</p>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="faq-item">
+            <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-ans-6">
+              <span>Is CardWise a credit card issuer?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-6">
+              <p>No. CardWise is a recommendation product, not a credit card issuer. Card applications are subject to the respective issuer's eligibility criteria and approval process.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         8. FINAL CALL TO ACTION
+         =================================================================== -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 id="cta-heading" class="headline-lg">Your next purchase deserves a smarter decision.</h2>
+          <p class="body-lg">Bring your cards together and find the best available option for your situation.</p>
+          
+          <div class="cta-actions">
+            <button type="button" class="btn btn-accent" data-route="signup" id="cta-final-get-started">
+              Get started
+            </button>
+            <a href="/login" class="cta-signin-link" data-route="login" id="cta-final-signin">
+              Already have an account? Sign in
+            </a>
+          </div>
+
+          <div class="cta-trust-row">
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Zero card numbers stored</span>
+            </div>
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>100% Free & Independent</span>
+            </div>
+            <div class="cta-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Instant Indian card matching</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       9. FOOTER
+       =================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand-col">
+          <a href="/" class="brand-logo" aria-label="CardWise AI Homepage">
+            <div class="brand-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+                <line x1="6" y1="15" x2="10" y2="15"></line>
+              </svg>
+            </div>
+            <span class="brand-text">CardWise <span class="brand-ai-badge">AI</span></span>
+          </a>
+          <p class="footer-tagline">
+            Intelligent credit card rewards optimization and private offer sharing for Indian consumers.
+          </p>
+        </div>
+
+        <!-- Product Navigation -->
+        <div class="footer-links-col">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-nav-list">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#circle">Circle</a></li>
+            <li><a href="/login" data-route="login">Sign in</a></li>
+            <li><a href="/signup" data-route="signup">Get started</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal & Info -->
+        <div class="footer-links-col">
+          <div class="footer-col-title">Legal & Security</div>
+          <ul class="footer-nav-list">
+            <li><a href="#faqs">Privacy Policy</a></li>
+            <li><a href="#faqs">Terms of Service</a></li>
+            <li><a href="#faqs">Security Guidelines</a></li>
+            <li><a href="#faqs">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mandatory Disclaimer -->
+      <div class="footer-disclaimer-box">
+        <p class="footer-disclaimer-text">
+          Reward calculations are estimates based on the available information. Actual benefits, eligibility, reward caps and redemption conditions depend on the applicable card issuer and merchant terms.
+        </p>
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div class="footer-bottom">
+        <div>© 2026 CardWise AI. Built for Indian credit cardholders.</div>
+        <div class="trust-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Zero Card Numbers Stored
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================
+       10. APPLICATION OVERLAYS & REAL INTERACTIVE VIEWS
+       (/login, /signup, /circle, /app)
+       =================================================================== -->
+  
+  <!-- SIGN IN FULL-SCREEN WINDOW -->
+  <div class="modal-overlay" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
+    <div class="modal-dialog">
+      <!-- Fullscreen Topbar -->
+      <header class="fullscreen-topbar">
+        <div class="fullscreen-topbar-inner">
+          <div class="fullscreen-brand-area">
+            <a href="/" class="brand-link" data-close-modal title="Back to CardWise Home">
+              <div class="brand-logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+                  <line x1="2" y1="10" x2="22" y2="10"></line>
+                  <line x1="6" y1="15" x2="10" y2="15"></line>
+                </svg>
+              </div>
+              <span class="brand-text">CardWise <span class="brand-ai-badge">AI</span></span>
+            </a>
+            <span class="topbar-divider">/</span>
+            <span class="topbar-view-title">Member Sign In</span>
+          </div>
+
+          <div class="fullscreen-actions-area">
+            <button type="button" class="fullscreen-close-btn" data-close-modal aria-label="Exit to website">
+              <span>Exit to Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Fullscreen Content Body -->
+      <div class="fullscreen-content-wrapper">
+        <div class="fullscreen-card-box auth-card-box">
+          <div class="eyebrow-badge">
+            <span class="eyebrow-dot"></span>
+            CardWise Account
+          </div>
+          <h2 id="login-modal-title" class="headline-md" style="margin-bottom: 8px;">Sign in to CardWise</h2>
+          <p class="body-md" style="margin-bottom: 24px;">Enter your details to access your personalized card optimization.</p>
+
+          <form id="login-form">
+            <div class="form-group">
+              <label class="form-label" for="login-name">Your Full Name</label>
+              <input type="text" id="login-name" class="form-input" placeholder="e.g. Vikram Malhotra" value="Vikram Malhotra" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="login-email">Email address</label>
+              <input type="email" id="login-email" class="form-input" placeholder="you@domain.com" value="vikram@cardwise.in" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="login-password">Password</label>
+              <input type="password" id="login-password" class="form-input" placeholder="••••••••" value="demo12345" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+              Sign In & Launch Assistant
+            </button>
+          </form>
+
+          <div style="margin-top: 20px; text-align: center; font-size: 0.8125rem; color: var(--color-charcoal-muted);">
+            Don't have an account? 
+            <a href="/signup" data-route="signup" style="color: var(--color-forest-prime); font-weight: 600; text-decoration: underline;">
+              Create free account
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGN UP FULL-SCREEN WINDOW -->
+  <div class="modal-overlay" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="signup-modal-title">
+    <div class="modal-dialog">
+      <!-- Fullscreen Topbar -->
+      <header class="fullscreen-topbar">
+        <div class="fullscreen-topbar-inner">
+          <div class="fullscreen-brand-area">
+            <a href="/" class="brand-link" data-close-modal title="Back to CardWise Home">
+              <div class="brand-logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+                  <line x1="2" y1="10" x2="22" y2="10"></line>
+                  <line x1="6" y1="15" x2="10" y2="15"></line>
+                </svg>
+              </div>
+              <span class="brand-text">CardWise <span class="brand-ai-badge">AI</span></span>
+            </a>
+            <span class="topbar-divider">/</span>
+            <span class="topbar-view-title">Setup Portfolio Profile</span>
+          </div>
+
+          <div class="fullscreen-actions-area">
+            <button type="button" class="fullscreen-close-btn" data-close-modal aria-label="Exit to website">
+              <span>Exit to Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Fullscreen Content Body -->
+      <div class="fullscreen-content-wrapper">
+        <div class="fullscreen-card-box signup-card-box">
+          <div class="eyebrow-badge">
+            <span class="eyebrow-dot"></span>
+            Fast 1-Min Setup
+          </div>
+          <h2 id="signup-modal-title" class="headline-md" style="margin-bottom: 6px;">Create your CardWise profile</h2>
+          <p class="body-sm" style="margin-bottom: 16px;">Select which cards you own. We never ask for card numbers, PINs, or CVVs.</p>
+
+          <form id="signup-form">
+            <div class="form-group">
+              <label class="form-label" for="signup-name">Full name</label>
+              <input type="text" id="signup-name" class="form-input" placeholder="e.g. Priya Patel" value="Priya Patel" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signup-email">Email address</label>
+              <input type="email" id="signup-email" class="form-input" placeholder="priya@example.com" value="priya@cardwise.in" required>
+            </div>
+
+            <div class="form-group">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <label class="form-label" style="margin-bottom:0;">Select your credit cards</label>
+                <span style="font-size: 0.75rem; color: var(--color-forest-prime); font-weight:600;">Tap to select</span>
+              </div>
+              <div class="card-select-grid" id="onboarding-card-picker">
+                <!-- Dynamically populated via app.js -->
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+              Complete Setup & Launch Assistant
+            </button>
+          </form>
+
+          <div style="margin-top: 18px; text-align: center; font-size: 0.8125rem; color: var(--color-charcoal-muted);">
+            Already have an account? 
+            <a href="/login" data-route="login" style="color: var(--color-forest-prime); font-weight: 600; text-decoration: underline;">
+              Sign in
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARDWISE CIRCLE FULL-SCREEN WINDOW -->
+  <div class="modal-overlay" id="circle-modal" role="dialog" aria-modal="true" aria-labelledby="circle-modal-title">
+    <div class="modal-dialog">
+      <!-- Fullscreen Topbar -->
+      <header class="fullscreen-topbar">
+        <div class="fullscreen-topbar-inner">
+          <div class="fullscreen-brand-area">
+            <a href="/" class="brand-link" data-close-modal title="Back to CardWise Home">
+              <div class="brand-logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+                  <line x1="2" y1="10" x2="22" y2="10"></line>
+                  <line x1="6" y1="15" x2="10" y2="15"></line>
+                </svg>
+              </div>
+              <span class="brand-text">CardWise <span class="brand-ai-badge">AI</span></span>
+            </a>
+            <span class="topbar-divider">/</span>
+            <span class="topbar-view-title">CardWise Circle Hub</span>
+          </div>
+
+          <div class="fullscreen-actions-area">
+            <div class="topbar-user-pill">
+              <span class="user-avatar-mini user-initial-display">V</span>
+              <span class="user-name-display">Vikram Malhotra</span>
+            </div>
+            <button type="button" class="fullscreen-close-btn" data-close-modal aria-label="Exit to website">
+              <span>Exit to Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Fullscreen Content Body -->
+      <div class="fullscreen-content-wrapper">
+        <div class="fullscreen-card-box circle-card-box">
+          <div class="eyebrow-badge">
+            <span class="eyebrow-dot"></span>
+            CardWise Circle Hub
+          </div>
+          <h2 id="circle-modal-title" class="headline-md" style="margin-bottom: 6px;"><span class="user-name-display">Vikram</span>'s Private Circle: Bangalore Techies</h2>
+          <p class="body-sm" style="margin-bottom: 18px;">Signed in as <strong class="user-email-display">vikram@cardwise.in</strong>. 6 friends sharing voluntary benefits. Zero card numbers or CVVs exchanged.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+            <div class="circle-offer-item">
+              <div class="circle-offer-meta">
+                <span class="circle-friend-name">Vikram Mehta</span>
+                <span style="font-size:0.6875rem; color:var(--color-sage);">Axis Atlas (Tier 2)</span>
+              </div>
+              <div class="circle-offer-title">MakeMyTrip Domestic Flights 12% Instant Off</div>
+              <p style="font-size:0.8125rem; color:var(--color-charcoal-muted);">"Booking tickets before Sunday? Can coordinate for the extra discount."</p>
+              <button type="button" class="btn btn-secondary btn-sm" style="align-self: flex-start; margin-top: 4px;" onclick="showToast('Coordination ping sent to Vikram!')">
+                Request Coordination
+              </button>
+            </div>
+
+            <div class="circle-offer-item">
+              <div class="circle-offer-meta">
+                <span class="circle-friend-name">Ananya Sen</span>
+                <span style="font-size:0.6875rem; color:var(--color-sage);">HDFC Diners Black</span>
+              </div>
+              <div class="circle-offer-title">ITC Hotels Dining 25% Savings Voucher</div>
+              <p style="font-size:0.8125rem; color:var(--color-charcoal-muted);">"Valid across ITC Windsor & ITC Gardenia Bangalore."</p>
+              <button type="button" class="btn btn-secondary btn-sm" style="align-self: flex-start; margin-top: 4px;" onclick="showToast('Coordination ping sent to Ananya!')">
+                Request Coordination
+              </button>
+            </div>
+          </div>
+
+          <div style="background-color: var(--color-surface-1); border-radius: var(--radius-md); padding: 12px 14px; font-size: 0.75rem; color: var(--color-charcoal-muted); line-height: 1.5;">
+            <strong>Safety Note:</strong> CardWise never handles transactions or card credentials. Members coordinate purchases directly with cardholders in compliance with bank terms.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION ASSISTANT FULL-SCREEN WINDOW (/app) -->
+  <div class="modal-overlay" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="app-modal-title">
+    <div class="modal-dialog agent-console-dialog">
+      <!-- Fullscreen Topbar -->
+      <header class="fullscreen-topbar">
+        <div class="fullscreen-topbar-inner">
+          <div class="fullscreen-brand-area">
+            <a href="/" class="brand-link" data-close-modal title="Back to CardWise Home">
+              <div class="brand-logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+                  <line x1="2" y1="10" x2="22" y2="10"></line>
+                  <line x1="6" y1="15" x2="10" y2="15"></line>
+                </svg>
+              </div>
+              <span class="brand-text">CardWise <span class="brand-ai-badge">AI</span></span>
+            </a>
+            <span class="topbar-divider">/</span>
+            <span class="topbar-view-title">Optimization Console</span>
+          </div>
+
+          <div class="fullscreen-actions-area">
+            <div class="topbar-user-pill">
+              <span class="user-avatar-mini user-initial-display">V</span>
+              <span class="user-name-display">Vikram Malhotra</span>
+            </div>
+            <button type="button" class="fullscreen-close-btn" data-close-modal aria-label="Exit to website">
+              <span>Exit to Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Fullscreen Content Body -->
+      <div class="fullscreen-content-wrapper">
+        <div class="fullscreen-card-box agent-card-box">
+          <!-- Header with User State & Connection Indicator -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+            <div class="eyebrow-badge" style="margin-bottom:0;">
+              <span class="eyebrow-dot"></span>
+              AI Agent Console
+            </div>
+            <div id="agentic-connection-badge" class="agentic-status-indicator ready">
+              ● Ready (Deterministic Engine)
+            </div>
+          </div>
+
+          <h2 id="app-modal-title" class="headline-md" style="margin-bottom: 6px;">Credit Card Optimization Agent</h2>
+          <p class="body-sm" style="margin-bottom: 14px;">
+            Signed in as <strong class="user-name-display" style="color:var(--color-forest-prime);">Vikram Malhotra</strong> (<span class="user-email-display" style="color:var(--color-charcoal-muted);">vikram@cardwise.in</span>). Tell the agent about your purchase, click <strong>Calculate</strong>, and get immediate card optimization.
+          </p>
+
+          <!-- Active Portfolio Bar -->
+          <div class="agent-portfolio-bar">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-charcoal-muted); margin-right: 4px;">Active Cards:</span>
+            <div id="user-active-cards-list" style="display:inline-flex; flex-wrap:wrap; gap:6px;">
+              <span class="portfolio-tag">ICICI Amazon Pay</span>
+              <span class="portfolio-tag">HDFC Millennia</span>
+              <span class="portfolio-tag">SBI Cashback</span>
+              <span class="portfolio-tag">Axis Airtel</span>
+              <span class="portfolio-tag">HDFC Infinia</span>
+            </div>
+          </div>
+
+          <!-- Purchase Details Input Form -->
+          <form id="app-query-form" style="margin-bottom: 14px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+              <div>
+                <label class="form-label" for="agent-merchant">Merchant / Platform</label>
+                <input type="text" id="agent-merchant" class="form-input" style="height:42px;" placeholder="Amazon, Flipkart, Swiggy..." value="Amazon">
+              </div>
+              <div>
+                <label class="form-label" for="agent-amount">Purchase Amount (INR ₹)</label>
+                <input type="number" id="agent-amount" class="form-input tabular-nums" style="height:42px;" placeholder="e.g. 80000" value="80000">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label class="form-label" for="app-query-input">Purchase Details or Specific Offer Question</label>
+              <input 
+                type="text" 
+                id="app-query-input" 
+                class="form-input" 
+                placeholder="e.g. Buying an iPhone for ₹80,000 on Amazon. ICICI has a 10% instant discount up to ₹1,500. Which card should I use?" 
+                value="Buying an iPhone for ₹80,000 on Amazon. ICICI has a 10% instant discount up to ₹1,500. Which card should I use?"
+                required
+              >
+            </div>
+
+            <!-- Quick Prompt Chips -->
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;">
+              <span style="font-size: 0.75rem; color: var(--color-charcoal-light); margin-right: 4px; align-self:center;">Try Scenario:</span>
+              <button type="button" class="preset-chip" onclick="fillAgentScenario('amazon-iphone')">Amazon iPhone ₹80k</button>
+              <button type="button" class="preset-chip" onclick="fillAgentScenario('makemytrip-flight')">MakeMyTrip Flights ₹25k</button>
+              <button type="button" class="preset-chip" onclick="fillAgentScenario('swiggy-dining')">Swiggy ₹2,400</button>
+              <button type="button" class="preset-chip" onclick="fillAgentScenario('rent-payment')">Rent ₹45k (Exclusion)</button>
+            </div>
+
+            <!-- Calculate Button -->
+            <button type="submit" class="btn btn-primary" id="btn-calculate" style="width: 100%; height: 48px; font-size: 1rem;">
+              <span id="btn-calculate-text">Calculate Best Card</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Output Container on Screen -->
+          <div id="agent-output-container" style="display: none;" class="agent-output-box">
+            <div class="agent-output-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--color-forest-prime);">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <strong style="font-size:0.9375rem; color:var(--color-charcoal);">Optimization Assessment</strong>
+              </div>
+              <span id="agent-status-tag" class="agent-source-badge">Verified Analysis</span>
+            </div>
+
+            <!-- 1. Optimal Card Highlight Banner -->
+            <div class="agent-best-card-banner">
+              <div>
+                <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--color-forest-prime); font-weight:700;">
+                  Recommended Optimal Card
+                </div>
+                <div id="agent-best-card-name" style="font-family:var(--font-display); font-size:1.25rem; font-weight:700; color:var(--color-charcoal); margin-top:3px;">
+                  Amazon Pay ICICI Card
+                </div>
+                <div id="agent-summary-text" style="font-size:0.8125rem; color:var(--color-charcoal-muted); margin-top:4px;">
+                  Evaluated against available merchant discounts, reward caps, and milestone eligibility.
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div id="agent-savings-val" class="tabular-nums" style="font-family:var(--font-display); font-size:1.45rem; font-weight:800; color:var(--color-forest-prime);">
+                  ₹3,501
+                </div>
+                <div id="agent-yield-pct" style="font-size:0.75rem; color:var(--color-charcoal-muted); font-weight:600;">
+                  Estimated Net Benefit
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Structured Comparison Table (Proper Semantic HTML) -->
+            <div style="margin-top: 16px;">
+              <div style="font-size: 0.8125rem; font-weight: 700; color: var(--color-charcoal); margin-bottom: 8px;">
+                Card-by-Card Comparison Matrix
+              </div>
+              <div class="agent-table-wrapper">
+                <table class="agent-result-table">
+                  <thead>
+                    <tr id="agent-table-headers">
+                      <th style="width: 32%;">Card Option</th>
+                      <th style="width: 34%;">Estimated Return</th>
+                      <th style="width: 34%;">Important Caveats & Terms</th>
+                    </tr>
+                  </thead>
+                  <tbody id="agent-table-body">
+                    <!-- Dynamically populated rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- 3. Key Factual Verification Notes & Caveats -->
+            <div id="agent-caveats-box" style="margin-top: 16px; background-color: var(--color-surface-1); border: 1px solid var(--color-hairline); border-radius: var(--radius-md); padding: 14px 16px;">
+              <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-forest-prime); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>Factual Verification & Issuer Conditions</span>
+              </div>
+              <ul id="agent-caveats-list" style="list-style: none; display: flex; flex-direction: column; gap: 6px; padding: 0; margin: 0;">
+                <!-- Populated with clean bullet points -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Global Scripts -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
